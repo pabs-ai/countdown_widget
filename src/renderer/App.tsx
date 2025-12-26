@@ -1,15 +1,22 @@
 import { useState, useEffect } from 'react';
-import { EventCategory } from '@types/event';
+import { EventCategory, Event } from '@types/event';
 import { useEventStore } from '@store/eventStore';
 import AddEventModal from '@components/AddEventModal';
+import EditEventModal from '@components/EditEventModal';
+import SettingsPanel from '@components/SettingsPanel';
 import EventCard from '@components/EventCard';
+import { useNotifications } from '@hooks/useNotifications';
 import './App.css';
 
 function App() {
   const [activeFilter, setActiveFilter] = useState<EventCategory | 'all'>('all');
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [editingEvent, setEditingEvent] = useState<Event | null>(null);
+  const [isSettingsPanelOpen, setIsSettingsPanelOpen] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const { events, loadEvents } = useEventStore();
+  
+  useNotifications();
 
   useEffect(() => {
     loadEvents();
@@ -31,12 +38,19 @@ function App() {
         <div className="header-actions">
           <button 
             className="theme-toggle" 
+            onClick={() => setIsSettingsPanelOpen(true)}
+            title="Settings"
+          >
+            ⚙️
+          </button>
+          <button 
+            className="theme-toggle" 
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
             title="Toggle theme"
           >
             {theme === 'light' ? '🌙' : '☀️'}
           </button>
-          <button className="add-btn" onClick={() => setIsModalOpen(true)}>
+          <button className="add-btn" onClick={() => setIsAddModalOpen(true)}>
             + Add Event
           </button>
         </div>
@@ -71,14 +85,29 @@ function App() {
         ) : (
           <div className="events">
             {filteredEvents.map((event) => (
-              <EventCard key={event.id} event={event} />
+              <EventCard 
+                key={event.id} 
+                event={event} 
+                onEdit={setEditingEvent}
+              />
             ))}
           </div>
         )}
       </div>
 
-      {isModalOpen && (
-        <AddEventModal onClose={() => setIsModalOpen(false)} />
+      {isAddModalOpen && (
+        <AddEventModal onClose={() => setIsAddModalOpen(false)} />
+      )}
+
+      {editingEvent && (
+        <EditEventModal 
+          event={editingEvent} 
+          onClose={() => setEditingEvent(null)} 
+        />
+      )}
+
+      {isSettingsPanelOpen && (
+        <SettingsPanel onClose={() => setIsSettingsPanelOpen(false)} />
       )}
     </div>
   );
