@@ -43,30 +43,11 @@
 
 
 \## 📸 Screenshots
+<img width="2150" height="1340" alt="countdown widget Pic 1" src="https://github.com/user-attachments/assets/a1c61509-4fa0-432b-b3ed-66fd39cbcad5" />
 
+<img width="2774" height="1468" alt="countdown widget Pic 2" src="https://github.com/user-attachments/assets/14365b52-9b74-4049-9b35-0a24044bb868" />
 
-
-> \*Add screenshots here once we create them\*
-
-
-
-\### Light Theme
-
-!\[Light Theme](screenshots/light-theme.png)
-
-
-
-\### Dark Theme
-
-!\[Dark Theme](screenshots/dark-theme.png)
-
-
-
-\### Settings Panel
-
-!\[Settings](screenshots/settings.png)
-
-
+<img width="2844" height="970" alt="countdown widget pic 4" src="https://github.com/user-attachments/assets/79fbc2bb-25d0-424c-a5ae-75ee12915e35" />
 
 ---
 
@@ -303,8 +284,6 @@ Former military transitioning to tech through the Boots2Bytes program. Building 
 
 
 \- \*\*Issues:\*\* \[GitHub Issues](https://github.com/pabs-ai/countdown\_widget/issues)
-
-\- \*\*Email:\*\* your-email@example.com
 
 \- \*\*Website:\*\* Coming soon!
 
